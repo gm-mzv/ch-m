@@ -9,7 +9,7 @@ banner:
   button:
     enable: true
     label: "Discover Our Project"
-    link: "project/"
+    link: "veranstaltungen/"
 
 ############################# About #################################
 about:
@@ -36,7 +36,7 @@ portfolio:
   button:
     enable: true
     label: "View Works"
-    link: "project/"
+    link: "veranstaltungen/"
 
 
 ############################# Service ############################

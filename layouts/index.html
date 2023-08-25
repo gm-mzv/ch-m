@@ -34,7 +34,6 @@
         <div class="block">
           <div class="section-title">
             {{ with .title }}<h2>{{ . | markdownify }}</h2>{{ end }}
-            {{ with .description }}{{ . | $.Page.RenderString (dict "display" "block") }}{{ end }}
           </div>
           {{ with .content }}{{ . | $.Page.RenderString (dict "display" "block") }}{{ end }}
         </div>
@@ -86,7 +85,7 @@
 <!-- /call to action -->
 
 <!-- funfacts -->
-{{ with .Params.funfacts }}
+<!-- {{ with .Params.funfacts }}
 {{ if .enable }}
 <section class="testimonial">
   <div class="container">
@@ -130,7 +129,7 @@
   </div>
 </section>
 {{ end }}
-{{ end }}
+{{ end }} -->
 <!-- /funfacts -->
 
 {{ end }}
