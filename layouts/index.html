@@ -10,11 +10,20 @@
         <div class="block">
           {{ with .title }}<h1>{{ . | markdownify }}</h1>{{ end }}
           {{ with .content }}{{ . | $.Page.RenderString (dict "display" "block") }}{{ end }}
+          <div class="block">
           {{ with .button }}
           {{ if .enable }}
           <a href="{{ .link | relLangURL }}" class="btn btn-main animated fadeInUp">{{ .label }}</a>
           {{ end }}
           {{ end }}
+          </div>
+          <div class="block">
+          {{ with .aktuellesButton }}
+          {{ if .enable }}
+          <a href="{{ .link | relLangURL }}" class="btn btn-main animated fadeInUp">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+          </div>
         </div>
       </div>
     </div>

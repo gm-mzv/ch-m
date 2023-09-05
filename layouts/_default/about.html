@@ -77,8 +77,8 @@
           <div class="testimonial-slider owl-carousel">
             {{ range .Params.funfacts.testimonial_slider }}
             <div>
-              <i class="fas fa-quote-left"></i>
-              {{ with .content }}<p>"{{ . | markdownify }}"</p>{{ end }}
+              <i class="fas fa-tty"></i>
+              {{ with .content }}<p>{{ . | markdownify }}</p>{{ end }}
               <div class="user">
                 {{ with .image }}<img src="{{ . | relURL }}" alt="client">{{ end }}
                 <p><span>{{ .name | markdownify }}</span> {{ .designation | markdownify }}</p>
@@ -95,19 +95,24 @@
       {{ if .enable }}
       <div class="col-md-6">
         <div class="tabCommon">
-          <ul class="nav nav-tabs">
-            {{ range $index, $elements := .tabs }}
-            <li {{ if eq $index 0 }} class="active" {{ end }}><a href="#{{ .name | urlize }}"
-                data-toggle="tab">{{ .name }}</a></li>
-            {{ end }}
+          {{ with site.Params.contact -}}
+      <div class="col-md-6 col-sm-12">
+        <div class="block">
+          <h2>{{ i18n "address_title" }}</h2>
+          <ul class="address-block">
+            {{ $add_address_descriptors := .address_descriptors }}
+            {{ with site.Params.location }}<li><i class="fas fa-map-marker-alt"></i>{{ if $add_address_descriptors }}{{ i18n "location" | printf "%s: " }}{{ end }}<div>{{ . | markdownify }}</div></li>{{ end }}
+            {{ with site.Params.email }}<li><i class="fas fa-envelope"></i>{{ if $add_address_descriptors }}{{ i18n "email" | printf "%s: " }}{{ end }}{{ partial "cloak_email" . }}</li>{{ end }}
+            {{ with site.Params.phone }}<li><i class="fas fa-tty"></i>{{ if $add_address_descriptors }}{{ i18n "phone" | printf "%s: " }}{{ end }}{{ . }}</li>{{ end }}
           </ul>
-          <div class="tab-content">
-            {{ range $index, $elements := .tabs }}
-            <div id="{{ .name | urlize }}" class="tab-pane fade {{ if eq $index 0 }} active in {{ end }}">
-              {{ .content | $.Page.RenderString (dict "display" "block") }}
-            </div>
-            {{ end }}
-          </div>
+          <ul class="social-icons">
+            {{ range site.Params.social -}}
+            <li><a href="{{ .link | safeURL }}"><i class="{{ .icon }}"></i></a></li>
+            {{- end }}
+          </ul>
+        </div>
+      </div>
+      {{- end }}
         </div>
       </div>
       {{ end }}

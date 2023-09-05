@@ -5,13 +5,58 @@
 {{ $data := index site.Data site.Language.Lang }}
 
 <!-- Portfolio Start -->
+
 <section class="portfolio-work">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <div class="row shuffle-wrapper">
-            {{ range .Data.Pages -}}
+          <h2>Sonntaggottesdienste</h2>
+          <div class="row shuffle-wrapper">  
+            {{ range .Data.Pages -}}                    
+            {{ if strings.Contains .Params.ggflag "m"}}
+            {{ $cats := .Params.category -}}
+            {{ if not (reflect.IsSlice $cats) }}{{ $cats = slice ($cats) }}{{ end -}}
+            {{ $cats = apply $cats "urlize" "." | jsonify -}}
+              <div class="col-md-4 portfolio-item shuffle-item" data-groups="{{ $cats }}">
+                {{ if isset .Params "image" -}}
+                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                {{- end }}
+                <div class="portfolio-hover">
+                  <div class="portfolio-content">
+                    <a class="h3" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <p>{{ .Params.description }}</p>
+                  </div>
+                </div>
+              </div>
+            {{end}}          
+            {{end}}
+          </div>
+          <h2>Weitere Gottesdienste</h2>
+          <div class="row shuffle-wrapper">  
+            {{ range .Data.Pages -}}                    
+            {{ if strings.Contains .Params.ggflag "t"}}
+            {{ $cats := .Params.category -}}
+            {{ if not (reflect.IsSlice $cats) }}{{ $cats = slice ($cats) }}{{ end -}}
+            {{ $cats = apply $cats "urlize" "." | jsonify -}}
+              <div class="col-md-4 portfolio-item shuffle-item" data-groups="{{ $cats }}">
+                {{ if isset .Params "image" -}}
+                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                {{- end }}
+                <div class="portfolio-hover">
+                  <div class="portfolio-content">
+                    <a class="h3" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <p>{{ .Params.description }}</p>
+                  </div>
+                </div>
+              </div>
+            {{end}}          
+            {{end}}
+            </div>
+            <h2>Weitere Veranstaltungen</h2>
+            <div class="row shuffle-wrapper">  
+            {{ range .Data.Pages -}}                    
+            {{ if strings.Contains .Params.ggflag "f"}}
             {{ $cats := .Params.category -}}
             {{ if not (reflect.IsSlice $cats) }}{{ $cats = slice ($cats) }}{{ end -}}
             {{ $cats = apply $cats "urlize" "." | jsonify -}}
@@ -25,9 +70,11 @@
                   <p>{{ .Params.description }}</p>
                 </div>
               </div>
-            </div>
+            </div>          
+            {{ end }}
             {{- end }}
           </div>
+          
         </div>
       </div>
     </div>
