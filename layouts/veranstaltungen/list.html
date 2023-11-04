@@ -20,14 +20,14 @@
             {{ $cats = apply $cats "urlize" "." | jsonify -}}
               <div class="col-md-4 portfolio-item shuffle-item" data-groups="{{ $cats }}">
                 {{ if isset .Params "image" -}}
-                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                <div class="overly">
+                  <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                </div>
                 {{- end }}
-                <div class="portfolio-hover">
                   <div class="portfolio-content">
                     <a class="h3" href="{{ .RelPermalink }}">{{ .Title }}</a>
                     <p>{{ .Params.description }}</p>
                   </div>
-                </div>
               </div>
             {{end}}          
             {{end}}
@@ -41,14 +41,14 @@
             {{ $cats = apply $cats "urlize" "." | jsonify -}}
               <div class="col-md-4 portfolio-item shuffle-item" data-groups="{{ $cats }}">
                 {{ if isset .Params "image" -}}
+                <div class="overly">
                 <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+                </div>
                 {{- end }}
-                <div class="portfolio-hover">
                   <div class="portfolio-content">
                     <a class="h3" href="{{ .RelPermalink }}">{{ .Title }}</a>
                     <p>{{ .Params.description }}</p>
                   </div>
-                </div>
               </div>
             {{end}}          
             {{end}}
@@ -62,14 +62,14 @@
             {{ $cats = apply $cats "urlize" "." | jsonify -}}
             <div class="col-md-4 portfolio-item shuffle-item" data-groups="{{ $cats }}">
               {{ if isset .Params "image" -}}
+              <div class="overly">
               <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}">
+              </div>
               {{- end }}
-              <div class="portfolio-hover">
                 <div class="portfolio-content">
                   <a class="h3" href="{{ .RelPermalink }}">{{ .Title }}</a>
                   <p>{{ .Params.description }}</p>
                 </div>
-              </div>
             </div>          
             {{ end }}
             {{- end }}
