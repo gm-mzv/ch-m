@@ -11,7 +11,7 @@
         <div class="post post-single">
           <div class="post-thumb">
             {{ with .Params.image -}}
-            <img class="img-responsive" src="{{ . | relURL }}" alt="{{ $.Title }}">
+            <img class="img-responsive" src="{{ . | relURL }}" alt="{{ $.Title }}" width="50%">
             {{- end }}
           </div>
           <div class="post-content post-excerpt">
